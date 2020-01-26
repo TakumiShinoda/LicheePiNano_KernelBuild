@@ -1,0 +1,22 @@
+version: "2"
+
+services:
+  LicheepiNano_OSBuild:
+    image: ubuntu
+    tty: true
+    command: >
+      bash -c "apt-get update &&
+      apt-get install -y git &&
+      apt-get install -y curl &&
+      apt-get install -y build-essential &&
+      apt-get install -y gcc-arm-none-eabi &&
+      apt-get install -y bc &&
+      apt-get install -y libssl-dev &&
+      apt-get install -y flex &&
+      apt-get install -y bison &&
+      git clone https://github.com/Lichee-Pi/linux.git --depth=1 -b nano-5.2-tf &&
+      cd linux &&
+      curl http://nano.lichee.pro/_static/step_by_step/lichee_nano_linux.config > .config &&
+      echo "Fininsh!" &&
+      while :; do sleep 10; done" 
+    # CROSS_COMPILE=/usr/bin/arm-none-eabi- make ARCH=arm
